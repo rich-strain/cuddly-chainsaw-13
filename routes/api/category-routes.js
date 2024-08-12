@@ -9,6 +9,10 @@ router.get('/', async (req, res) => {
     const categoryData = await Category.findAll({
       include: [{ model: Product }],
     });
+    if (!categoryData) {
+      res.status(404).json({ message: 'No Categoreis Found' });
+      return;
+    }
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
@@ -23,6 +27,7 @@ router.get('/:id', async (req, res) => {
     });
     if (!categoryData) {
       res.status(404).json({ message: 'Category Id Not Found' });
+      return;
     }
     res.status(200).json(categoryData);
   } catch (err) {
@@ -62,6 +67,7 @@ router.delete('/:id', async (req, res) => {
     });
     if (!categoryData) {
       res.status(404).json({ message: 'Category Id Not Found' });
+      return;
     }
     res.status(200).json(`Category Id: ${req.params.id} has been deleted`);
   } catch (err) {
