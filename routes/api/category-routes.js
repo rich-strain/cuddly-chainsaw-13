@@ -21,6 +21,9 @@ router.get('/:id', async (req, res) => {
     const categoryData = await Category.findByPk(req.params.id, {
       include: [{ model: Product }],
     });
+    if (!categoryData) {
+      res.status(404).json({ message: 'Category Id Not Found' });
+    }
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
@@ -40,6 +43,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const categoryData = await Category.update(req.body, { where: { id: req.params.id } });
+    if (!categoryData) {
+      res.status(404).json({ message: 'Category Id Not Found' });
+    }
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
@@ -55,7 +61,7 @@ router.delete('/:id', async (req, res) => {
       },
     });
     if (!categoryData) {
-      res.status(404).json({ message: 'Id Not Found' });
+      res.status(404).json({ message: 'Category Id Not Found' });
     }
     res.status(200).json(`Category Id: ${req.params.id} has been deleted`);
   } catch (err) {
