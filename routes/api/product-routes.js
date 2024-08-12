@@ -9,6 +9,10 @@ router.get('/', async (req, res) => {
     const productData = await Product.findAll({
       include: [{ model: Category }, { model: Tag }],
     });
+    if (!productData) {
+      res.status(404).json({ message: 'No Products Found' });
+      return;
+    }
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -21,6 +25,10 @@ router.get('/:id', async (req, res) => {
     const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category }, { model: Tag }],
     });
+    if (!productData) {
+      res.status(404).json({ message: 'Product Id Not Found' });
+      return;
+    }
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -106,6 +114,10 @@ router.delete('/:id', async (req, res) => {
     const productData = await Product.destroy({
       where: { id: req.params.id },
     });
+    if (!productData) {
+      res.status(404).json({ message: 'Product Id Not Found' });
+      return;
+    }
     res.status(200).json(`Product Id: ${req.params.id} has been deleted!`);
   } catch (err) {
     res.status(500).json(err);
