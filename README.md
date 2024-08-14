@@ -58,11 +58,15 @@ npm start
 - `http://localhost:3001/api/tags/:id` PUT to Update a Tag By Id
 - `http://localhost:3001/api/tags/:id` DELETE to Delete a Tag By Id
 
-### Screen Capture of Application
+### Video Walkthrough
 
 To see the application working from Insomnia please refer to the link below.
 
 [ScreenCast.com](https://www.screencast.com/t/vuMCkTuNSo)
+
+### Screenshot
+
+![Application Screenshot](assets/images/screenshot.png)
 
 ## License
 
