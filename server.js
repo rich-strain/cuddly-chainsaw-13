@@ -1,13 +1,13 @@
-const express = require('express');
-const routes = require('./routes');
+const express = require('express'); // Import the express package
+const routes = require('./routes'); // Import the routes folder
 
-const sequalize = require('./config/connection');
+const sequalize = require('./config/connection'); // Import the connection to the database
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+const app = express(); // Create the express app
+const PORT = process.env.PORT || 3001; // Define the port
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Define the middleware
+app.use(express.urlencoded({ extended: true })); // Define the middleware
 
 app.use(routes);
 
